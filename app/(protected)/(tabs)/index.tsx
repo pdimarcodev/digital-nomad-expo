@@ -1,6 +1,8 @@
+import { Box } from "@/src/components/Box";
 import { CityCard } from '@/src/components/CityCard';
 import { Screen } from '@/src/components/Screen';
 import { CityFilter } from "@/src/containers/CityFilter";
+import { categories } from "@/src/data/categories";
 import { cityPreviewList } from '@/src/data/cities';
 import { useAppTheme } from '@/src/theme/useAppTheme';
 import { CityPreview } from '@/src/types';
@@ -17,11 +19,15 @@ export default function HomeScreen() {
   useScrollToTop(flatListRef)
 
   function renderItem({ item }: ListRenderItemInfo<CityPreview>) {
-    return <CityCard cityPreview={item} />
+    return (
+      <Box paddingHorizontal="padding">
+        <CityCard cityPreview={item} />
+      </Box>
+    )
   }
 
   return (
-    <Screen>
+    <Screen style={{ paddingHorizontal: 0 }}>
       <FlatList
         ref={flatListRef}
         contentContainerStyle={
@@ -35,7 +41,7 @@ export default function HomeScreen() {
         data={cityPreviewList}
         renderItem={renderItem}
         showsVerticalScrollIndicator={false}
-        ListHeaderComponent={<CityFilter />}
+        ListHeaderComponent={<CityFilter categories={categories} />}
       />
     </Screen>
   );

@@ -42,6 +42,7 @@ const boxStyle: BoxProps = {
   flexDirection: 'row',
   alignItems: 'center',
   padding: 's8',
+  paddingLeft: 's16',
   justifyContent: 'space-between',
   backgroundColor: 'gray1',
   height: 70,
