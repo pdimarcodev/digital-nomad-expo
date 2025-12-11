@@ -17,7 +17,7 @@ export default function HomeScreen() {
   const { top } = useSafeAreaInsets()
   const [cityName, setCityName] = useState('')
   const debouncedCityName = useDebounce(cityName)
-  const [selectedCategoryId, setSetselectedCategoryId] = useState<string | null>(null)
+  const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(null)
 
   const { cityPreviewList } = useCities({ name: debouncedCityName, categoryId: selectedCategoryId })
 
@@ -49,10 +49,10 @@ export default function HomeScreen() {
         showsVerticalScrollIndicator={false}
         ListHeaderComponent={<CityFilter
           categories={categories}
-          cityName={debouncedCityName}
+          cityName={cityName}
           onChangeCityName={setCityName}
           selectedCategoryId={selectedCategoryId}
-          onChangeSelectedCategoryId={setSetselectedCategoryId}
+          onChangeSelectedCategoryId={setSelectedCategoryId}
         />}
       />
     </Screen>
