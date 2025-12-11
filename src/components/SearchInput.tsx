@@ -4,12 +4,23 @@ import { useAppTheme } from "../theme/useAppTheme";
 import { Box, BoxProps } from "./Box";
 import { IconButton } from "./IconButton";
 
-type SearchInputProps = {} & Pick<TextInputProps,
-  | 'value' | 'onChangeText' | 'placeholder'>
+type SearchInputProps = {} & Pick<
+  TextInputProps,
+  "value" | "onChangeText" | "placeholder"
+>;
+export function SearchInput({
+  value,
+  onChangeText,
+  placeholder,
+}: SearchInputProps) {
+  const { colors, textVariants } = useAppTheme();
+  const [isFocused, setIsFocused] = useState(false);
 
-export function SearchInput({ value, onChangeText, placeholder }: SearchInputProps) {
-  const { colors, textVariants } = useAppTheme()
-  const [isFocused, setIsFocused] = useState(false)
+  function onPressIconButton() {
+    if (value!.length > 0) {
+      onChangeText?.("");
+    }
+  }
 
   return (
     <Box
@@ -24,28 +35,30 @@ export function SearchInput({ value, onChangeText, placeholder }: SearchInputPro
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         style={{
-          ...textVariants.text16,
-          flexShrink: 1,
+          ...textVariants.title16,
           color: colors.text,
-          // backgroundColor: 'green',
-          height: '100%',
-          width: '100%',
-
+          //   backgroundColor: "green",
+          height: "100%",
+          width: "100%",
+          flexShrink: 1,
         }}
       />
-      <IconButton iconName="Search-outline" onPress={() => { }} />
+      <IconButton
+        iconName={value!.length > 0 ? "Close" : "Search-outline"}
+        onPress={onPressIconButton}
+      />
     </Box>
-  )
+  );
 }
 
 const boxStyle: BoxProps = {
-  flexDirection: 'row',
-  alignItems: 'center',
-  padding: 's8',
-  paddingLeft: 's16',
-  justifyContent: 'space-between',
-  backgroundColor: 'gray1',
+  flexDirection: "row",
+  alignItems: "center",
+  padding: "s8",
+  justifyContent: "space-between",
+  backgroundColor: "gray1",
+  paddingLeft: "s16",
   height: 70,
   borderRadius: "rounded",
-  borderWidth: 2
-}
+  borderWidth: 2,
+};
