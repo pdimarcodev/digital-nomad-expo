@@ -1,0 +1,73 @@
+import { PropsWithChildren } from "react";
+import { StyleSheet, TouchableOpacity } from "react-native";
+import Animated, {
+  SharedValue,
+  useAnimatedStyle,
+  useDerivedValue,
+  useSharedValue,
+  withDelay,
+  withTiming,
+} from "react-native-reanimated";
+
+type BottomSheetProps = {
+  isOpen: SharedValue<boolean>;
+  onPress: () => void;
+  duration?: number;
+};
+
+export function BottomSheet({
+  children,
+  isOpen,
+  onPress,
+  duration = 600,
+}: PropsWithChildren<BottomSheetProps>) {
+  const height = useSharedValue(0);
+
+  const progress = useDerivedValue(() =>
+    withTiming(isOpen.value ? 0 : 1, { duration })
+  );
+
+  const backdropAnimatedStyle = useAnimatedStyle(() => ({
+    opacity: 1 - progress.value,
+    zIndex: isOpen.value
+      ? 1
+      : withDelay(duration, withTiming(-1, { duration: 0 })),
+  }));
+
+  const sheetAnimatedStyle = useAnimatedStyle(() => ({
+    transform: [
+      {
+        translateY: progress.value * height.value,
+      },
+    ],
+    zIndex: 2,
+  }));
+
+  return (
+    <>
+      <Animated.View style={[styles.backdrop, backdropAnimatedStyle]}>
+        <TouchableOpacity onPress={onPress} style={{ flex: 1 }} />
+      </Animated.View>
+      <Animated.View
+        style={[styles.sheet, sheetAnimatedStyle]}
+        onLayout={(e) => {
+          height.value = e.nativeEvent.layout.height;
+        }}
+      >
+        {children}
+      </Animated.View>
+    </>
+  );
+}
+
+const styles = StyleSheet.create({
+  backdrop: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: "rgba(0,0,0,0.7)",
+  },
+  sheet: {
+    position: "absolute",
+    width: "100%",
+    bottom: 0,
+  },
+});

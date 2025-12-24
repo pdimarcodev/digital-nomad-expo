@@ -4,31 +4,31 @@ import { Text } from "../components/Text";
 import { useAppTheme } from "../theme/useAppTheme";
 import { City } from "../types";
 
-type CityDetailsMapProps = Pick<City, 'location'>
+type CityDetailsMapProps = Pick<City, "location">;
 
-export function CityDetailsMap({location: {latitude, longitude}}: CityDetailsMapProps) {
-  const { borderRadii } = useAppTheme()
+export function CityDetailsMap({
+  location: { latitude, longitude },
+}: CityDetailsMapProps) {
+  const { borderRadii } = useAppTheme();
 
   return (
     <Box padding="padding">
-      <Text 
-      variant="title22"
-      mb="s16"
-      >Map</Text>
+      <Text variant="title22" mb="s16">
+        Map
+      </Text>
       <MapView
-      style={{
-        width: '100%',
-        height: 200,
-        borderRadius: borderRadii.default
-      }}
-      initialRegion={ {
-        latitude, 
-        longitude,
-        latitudeDelta: .0922,
-        longitudeDelta: .0421
-      }}
-      >
-      </MapView>
+        style={{
+          width: "100%",
+          height: 200,
+          borderRadius: borderRadii.default,
+        }}
+        initialRegion={{
+          latitude,
+          longitude,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+        }}
+      ></MapView>
     </Box>
-  )
+  );
 }
