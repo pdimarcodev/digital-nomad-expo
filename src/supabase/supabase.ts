@@ -9,7 +9,7 @@ const supabaseEnvSchema = z.object({
 
 const { url, key } = supabaseEnvSchema.parse({
   url: process.env.EXPO_PUBLIC_SUPABASE_URL,
-  key: process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY,
+  key: process.env.EXPO_PUBLIC_SUPABASE_KEY,
 });
 
 export const supabase = createClient(url, key, {
