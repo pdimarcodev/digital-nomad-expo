@@ -3,5 +3,10 @@
     "source.fixAll": "explicit",
     "source.organizeImports": "explicit",
     "source.sortMembers": "explicit"
+  },
+  "typescript.suggest.autoImports": true,
+  "typescript.preferences.quoteStyle": "double",
+  "editor.quickSuggestions": {
+    "strings": true
   }
 }
