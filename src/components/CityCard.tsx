@@ -19,7 +19,6 @@ export function CityCard({ cityPreview, style }: CityCardProps) {
     <Link push href={`/city-details/${cityPreview.id}`} asChild>
       <Pressable>
         <ImageBackground
-          // source={cityPreview.coverImage}
           source={
             typeof cityPreview.coverImage === "number"
               ? cityPreview.coverImage

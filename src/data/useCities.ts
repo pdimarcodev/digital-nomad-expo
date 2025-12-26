@@ -22,7 +22,7 @@ export function useCities({ name, categoryId }: CityFilter): UseCitiesReturn {
     try {
       setIsLoading(true);
       const cities = await supabaseService.findAll();
-      console.log(cities[0].coverImage);
+      // console.log(cities[0].coverImage);
       setCities(cities);
     } catch (error) {
       setError(error);
