@@ -2,7 +2,7 @@ import { Box } from "@/src/components/Box";
 import { CityCard } from "@/src/components/CityCard";
 import { Screen } from "@/src/components/Screen";
 import { CityFilter } from "@/src/containers/CityFilter";
-import { useCategories } from "@/src/data/src/data/useCategories";
+import { useCategories } from "@/src/data/useCategories";
 import { useCities } from "@/src/data/useCities";
 import { useDebounce } from "@/src/hooks/useDebounce";
 import { useAppTheme } from "@/src/theme/useAppTheme";

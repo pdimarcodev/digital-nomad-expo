@@ -9,23 +9,28 @@ import { IconButton } from "../components/IconButton";
 import { PILL_HEIGHT } from "../components/Pill";
 import { City } from "../types";
 
-type CityDetailsHeaderProps = Pick<City,
-  | "id" | "categories" | "coverImage">
+type CityDetailsHeaderProps = Pick<City, "id" | "categories" | "coverImage">;
 
-export function CityDetailsHeader({ id, categories, coverImage }: CityDetailsHeaderProps) {
-  const router = useRouter()
-  const { top } = useSafeAreaInsets()
+export function CityDetailsHeader({
+  id,
+  categories,
+  coverImage,
+}: CityDetailsHeaderProps) {
+  const router = useRouter();
+  const { top } = useSafeAreaInsets();
 
   return (
     <Box>
       <ImageBackground
-        source={coverImage}
+        source={
+          typeof coverImage === "number" ? coverImage : { uri: coverImage }
+        }
         style={{
           width: "100%",
           height: 250,
         }}
         imageStyle={{
-          borderBottomRightRadius: 40
+          borderBottomRightRadius: 40,
         }}
       >
         <BlackOpacity />
@@ -48,15 +53,11 @@ export function CityDetailsHeader({ id, categories, coverImage }: CityDetailsHea
         style={{ marginTop: -PILL_HEIGHT / 2 }}
       >
         <Box flexDirection="row" gap="s8" paddingHorizontal="padding">
-          {categories.map(category => (
-            <CategoryPill
-              key={category.id}
-              category={category}
-              active
-            />
+          {categories.map((category) => (
+            <CategoryPill key={category.id} category={category} active />
           ))}
         </Box>
       </ScrollView>
     </Box>
-  )
+  );
 }
