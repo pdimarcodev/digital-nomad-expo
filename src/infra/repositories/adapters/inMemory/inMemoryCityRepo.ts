@@ -1,4 +1,4 @@
-import { cities } from "@/src/data/cities";
+import { cities } from "./seeds/cities";
 import { City, CityPreview } from "@/src/domain/city/City";
 import { CityFindAllFilters, ICityRepo } from "@/src/domain/city/ICityRepo";
 

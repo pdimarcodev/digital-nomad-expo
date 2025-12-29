@@ -1,5 +1,7 @@
+import { AuthProvider } from "@/src/domain/auth/AuthContext";
 import { AlertFeedback } from "@/src/infra/feedbackService/adapters/Alert/AlertFeedback";
 import { FeedbackProvider } from "@/src/infra/feedbackService/FeedbackProvider";
+import { SupabaseAuthRepo } from "@/src/infra/repositories/adapters/supabase/SupabaseAuthRepo";
 import { SupabaseCategoryRepo } from "@/src/infra/repositories/adapters/supabase/SupabaseCategoryRepo";
 import { SupabaseCityRepo } from "@/src/infra/repositories/adapters/supabase/SupabaseCityRepo";
 import { RepositoryProvider } from "@/src/infra/repositories/RepositoryProvider";
@@ -48,22 +50,24 @@ export default function RootLayout() {
         value={{
           city: SupabaseCityRepo,
           category: SupabaseCategoryRepo,
-          auth: () => {},
+          auth: SupabaseAuthRepo,
         }}
       >
-        <ThemeProvider theme={theme}>
-          <Stack
-            screenOptions={{
-              contentStyle: { backgroundColor: theme.colors.background },
-              headerShown: false,
-              fullScreenGestureEnabled: true,
-            }}
-          >
-            <Stack.Screen name="(protected)" options={{ headerShown: false }} />
-            <Stack.Screen name="sign-in" />
-          </Stack>
-          <StatusBar style="light" />
-        </ThemeProvider>
+        <AuthProvider>
+          <ThemeProvider theme={theme}>
+            <Stack
+              screenOptions={{
+                contentStyle: { backgroundColor: theme.colors.background },
+                headerShown: false,
+                fullScreenGestureEnabled: true,
+              }}
+            >
+              <Stack.Screen name="(protected)" options={{ headerShown: false }} />
+              <Stack.Screen name="sign-in" />
+            </Stack>
+            <StatusBar style="light" />
+          </ThemeProvider>
+        </AuthProvider>
       </RepositoryProvider>
     </FeedbackProvider>
   );

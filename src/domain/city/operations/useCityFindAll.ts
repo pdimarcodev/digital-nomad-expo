@@ -1,4 +1,4 @@
-import { useFetchData } from "@/src/data/useFetchData";
+import { useFetchData } from "@/src/infra/operations/useFetchData";
 import { CityFindAllFilters, ICityRepo } from "../ICityRepo";
 
 export function useCityFindAll(
