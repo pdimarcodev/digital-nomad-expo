@@ -1,10 +1,12 @@
-import React, { useContext } from "react";
+import { IAuthRepo } from "@/src/domain/auth/IAuthRepo";
 import { ICategoryRepo } from "@/src/domain/category/ICategoryRepo";
 import { ICityRepo } from "@/src/domain/city/ICityRepo";
+import React, { useContext } from "react";
 
 export type Repositories = {
   category: ICategoryRepo;
   city: ICityRepo;
+  auth: IAuthRepo;
 };
 
 const RepositoryContext = React.createContext<Repositories | null>(null);

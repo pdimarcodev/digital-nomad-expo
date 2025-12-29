@@ -1,4 +1,5 @@
-import { Screen } from "@/src/components/Screen";
+import { Screen } from "@/src/ui/components/Screen";
+import { useAuthSignIn } from "@/src/domain/auth/operations/useAuthSignIn";
 import { useState } from "react";
 import { Button, StyleSheet, TextInput } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -6,9 +7,10 @@ import { SafeAreaView } from "react-native-safe-area-context";
 export default function SignInScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { mutate: signIn } = useAuthSignIn();
 
   function handleSignIn() {
-    console.log({ email, password });
+    signIn({ email, password });
   }
   return (
     <Screen>

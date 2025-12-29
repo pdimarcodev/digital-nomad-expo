@@ -1,7 +1,9 @@
-import { RepositoryProvider } from "@/src/infra/repositories/RepositoryProvider";
+import { AlertFeedback } from "@/src/infra/feedbackService/adapters/Alert/AlertFeedback";
+import { FeedbackProvider } from "@/src/infra/feedbackService/FeedbackProvider";
 import { SupabaseCategoryRepo } from "@/src/infra/repositories/adapters/supabase/SupabaseCategoryRepo";
 import { SupabaseCityRepo } from "@/src/infra/repositories/adapters/supabase/SupabaseCityRepo";
-import theme from "@/src/theme/theme";
+import { RepositoryProvider } from "@/src/infra/repositories/RepositoryProvider";
+import theme from "@/src/ui/theme/theme";
 import { ThemeProvider } from "@shopify/restyle";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
@@ -41,25 +43,28 @@ export default function RootLayout() {
   }
 
   return (
-    <RepositoryProvider
-      value={{
-        city: SupabaseCityRepo,
-        category: SupabaseCategoryRepo,
-      }}
-    >
-      <ThemeProvider theme={theme}>
-        <Stack
-          screenOptions={{
-            contentStyle: { backgroundColor: theme.colors.background },
-            headerShown: false,
-            fullScreenGestureEnabled: true,
-          }}
-        >
-          <Stack.Screen name="(protected)" options={{ headerShown: false }} />
-          <Stack.Screen name="sign-in" />
-        </Stack>
-        <StatusBar style="light" />
-      </ThemeProvider>
-    </RepositoryProvider>
+    <FeedbackProvider value={AlertFeedback}>
+      <RepositoryProvider
+        value={{
+          city: SupabaseCityRepo,
+          category: SupabaseCategoryRepo,
+          auth: () => {},
+        }}
+      >
+        <ThemeProvider theme={theme}>
+          <Stack
+            screenOptions={{
+              contentStyle: { backgroundColor: theme.colors.background },
+              headerShown: false,
+              fullScreenGestureEnabled: true,
+            }}
+          >
+            <Stack.Screen name="(protected)" options={{ headerShown: false }} />
+            <Stack.Screen name="sign-in" />
+          </Stack>
+          <StatusBar style="light" />
+        </ThemeProvider>
+      </RepositoryProvider>
+    </FeedbackProvider>
   );
 }

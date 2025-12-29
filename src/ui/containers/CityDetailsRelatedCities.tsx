@@ -3,9 +3,9 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Box } from "../components/Box";
 import { CityCard } from "../components/CityCard";
 import { Text } from "../components/Text";
-import { useRelatedCitiesFindAll } from "../domain/city/operations/useRelatedCitiesFindAll";
+import { useRelatedCitiesFindAll } from "../../domain/city/operations/useRelatedCitiesFindAll";
 import { useAppTheme } from "../theme/useAppTheme";
-import { City } from "../domain/city/City";
+import { City } from "../../domain/city/City";
 
 type Props = Pick<City, "id">;
 
