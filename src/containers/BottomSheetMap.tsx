@@ -5,7 +5,7 @@ import { BottomSheet } from "../components/BottomSheet";
 import { Box } from "../components/Box";
 import { IconButton } from "../components/IconButton";
 import { useAppTheme } from "../theme/useAppTheme";
-import { City } from "../types";
+import { City } from "../domain/city/City";
 
 interface BottomSheetMapProps
   extends Omit<ComponentPropsWithoutRef<typeof BottomSheet>, "children"> {

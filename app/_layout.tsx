@@ -1,3 +1,6 @@
+import { RepositoryProvider } from "@/src/infra/repositories/RepositoryProvider";
+import { SupabaseCategoryRepo } from "@/src/infra/repositories/adapters/supabase/SupabaseCategoryRepo";
+import { SupabaseCityRepo } from "@/src/infra/repositories/adapters/supabase/SupabaseCityRepo";
 import theme from "@/src/theme/theme";
 import { ThemeProvider } from "@shopify/restyle";
 import { useFonts } from "expo-font";
@@ -38,16 +41,25 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      <Stack
-        screenOptions={{
-          contentStyle: { backgroundColor: theme.colors.background },
-        }}
-      >
-        <Stack.Screen name="(protected)" options={{ headerShown: false }} />
-        <Stack.Screen name="sign-in" />
-      </Stack>
-      <StatusBar style="light" />
-    </ThemeProvider>
+    <RepositoryProvider
+      value={{
+        city: SupabaseCityRepo,
+        category: SupabaseCategoryRepo,
+      }}
+    >
+      <ThemeProvider theme={theme}>
+        <Stack
+          screenOptions={{
+            contentStyle: { backgroundColor: theme.colors.background },
+            headerShown: false,
+            fullScreenGestureEnabled: true,
+          }}
+        >
+          <Stack.Screen name="(protected)" options={{ headerShown: false }} />
+          <Stack.Screen name="sign-in" />
+        </Stack>
+        <StatusBar style="light" />
+      </ThemeProvider>
+    </RepositoryProvider>
   );
 }
