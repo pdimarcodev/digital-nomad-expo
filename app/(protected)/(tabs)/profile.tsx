@@ -16,7 +16,7 @@ export default function ProfileScreen() {
         <Text>Profile Screen</Text>
         <Pressable onPress={signOut}>
           <Box flexDirection="row" alignItems="center">
-            <Text>Sair</Text>
+            <Text>Sign out</Text>
             <Icon name="Logout" color="primary" />
           </Box>
         </Pressable>
