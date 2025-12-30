@@ -1,9 +1,7 @@
 import { AuthProvider } from "@/src/domain/auth/AuthContext";
 import { AlertFeedback } from "@/src/infra/feedbackService/adapters/Alert/AlertFeedback";
 import { FeedbackProvider } from "@/src/infra/feedbackService/FeedbackProvider";
-import { SupabaseAuthRepo } from "@/src/infra/repositories/adapters/supabase/SupabaseAuthRepo";
-import { SupabaseCategoryRepo } from "@/src/infra/repositories/adapters/supabase/SupabaseCategoryRepo";
-import { SupabaseCityRepo } from "@/src/infra/repositories/adapters/supabase/SupabaseCityRepo";
+import { InMemoryRepository } from "@/src/infra/repositories/adapters/inMemory";
 import { RepositoryProvider } from "@/src/infra/repositories/RepositoryProvider";
 import theme from "@/src/ui/theme/theme";
 import { ThemeProvider } from "@shopify/restyle";
@@ -46,13 +44,7 @@ export default function RootLayout() {
 
   return (
     <FeedbackProvider value={AlertFeedback}>
-      <RepositoryProvider
-        value={{
-          city: SupabaseCityRepo,
-          category: SupabaseCategoryRepo,
-          auth: SupabaseAuthRepo,
-        }}
-      >
+      <RepositoryProvider value={InMemoryRepository}>
         <AuthProvider>
           <ThemeProvider theme={theme}>
             <Stack
@@ -62,7 +54,10 @@ export default function RootLayout() {
                 fullScreenGestureEnabled: true,
               }}
             >
-              <Stack.Screen name="(protected)" options={{ headerShown: false }} />
+              <Stack.Screen
+                name="(protected)"
+                options={{ headerShown: false }}
+              />
               <Stack.Screen name="sign-in" />
             </Stack>
             <StatusBar style="light" />

@@ -1,4 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { router } from "expo-router";
 import React, { useContext, useEffect, useState } from "react";
 import { AuthUser } from "./AuthUser";
 
@@ -39,6 +40,7 @@ export function AuthProvider({ children }: React.PropsWithChildren) {
   async function saveAuthUser(user: AuthUser) {
     await AsyncStorage.setItem(AUTH_KEY, JSON.stringify(user));
     setAuthUser(user);
+    router.replace("/");
   }
 
   async function removeAuthUser() {
