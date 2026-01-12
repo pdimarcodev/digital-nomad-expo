@@ -20,7 +20,7 @@ const buttonColors: Record<
 
 type ButtonProps = TouchableOpacityBoxProps & {
   title: string;
-  onPress: () => {};
+  onPress: () => void;
   variant?: ButtonVariant;
 };
 
