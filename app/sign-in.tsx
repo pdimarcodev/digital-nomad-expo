@@ -47,7 +47,7 @@ export default function SignInScreen() {
           </Text>
         </Link>
         <Button title="Sign in" mt="s20" onPress={handleSignIn} />
-        <TextLink href="/sign-up" text="No account yet?" ctaText="Criar" />
+        <TextLink href="/sign-up" text="No account yet?" ctaText="Create" />
       </SafeAreaView>
     </Screen>
   );
