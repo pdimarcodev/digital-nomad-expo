@@ -1,10 +1,8 @@
 import { useFeedbackService } from "@/src/infra/feedbackService/FeedbackProvider";
 import { useAppMutation } from "@/src/infra/operations/useAppMutation";
 import { useRepository } from "@/src/infra/repositories/RepositoryProvider";
-import { AuthUser } from "../AuthUser";
 import { useAuth } from "../AuthContext";
-
-
+import { AuthUser } from "../AuthUser";
 
 export function useAuthSignIn() {
   const { auth } = useRepository();
