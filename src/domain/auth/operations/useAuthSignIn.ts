@@ -7,12 +7,12 @@ import { AuthUser } from "../AuthUser";
 export function useAuthSignIn() {
   const { auth } = useRepository();
   const feedbackService = useFeedbackService();
-  const {saveAuthUser} = useAuth()
+  const { saveAuthUser } = useAuth();
 
   return useAppMutation<AuthUser, { email: string; password: string }>({
     mutateFn: ({ email, password }) => auth.signIn(email, password),
     onSuccess: (authUser) => {
-      saveAuthUser(authUser)
+      saveAuthUser(authUser);
 
       feedbackService.send({
         type: "success",
@@ -20,7 +20,11 @@ export function useAuthSignIn() {
       });
     },
     onError: (error) => {
-      feedbackService.send({ type: "error", message: "error on sign" });
+      feedbackService.send({
+        type: "error",
+        message: "error on sign",
+        description: (error as Error).message,
+      });
     },
   });
 }
