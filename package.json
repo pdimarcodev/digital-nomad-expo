@@ -10,7 +10,7 @@
     "ios:17": "expo run:ios --device 'iPhone 17 Pro'",
     "web": "expo start --web",
     "lint": "expo lint",
-    "test": "jest --verbose"
+    "test": "jest --watchAll --verbose"
   },
   "dependencies": {
     "@expo/vector-icons": "^15.0.3",
