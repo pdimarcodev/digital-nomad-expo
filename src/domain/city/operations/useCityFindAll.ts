@@ -1,12 +1,12 @@
-import { useFetchData } from "@/src/infra/operations/useFetchData";
-import { CityFindAllFilters, ICityRepo } from "../ICityRepo";
+import { useAppQuery } from "@/src/infra/operations/useAppQuery";
+import { useRepository } from "@/src/infra/repositories/RepositoryProvider";
+import { CityFindAllFilters } from "../ICityRepo";
 
-export function useCityFindAll(
-  filters: CityFindAllFilters,
-  repository: ICityRepo
-) {
-  return useFetchData(
-    () => repository.findAll(filters),
-    [filters.name, filters.categoryId]
-  );
+export function useCityFindAll(filters: CityFindAllFilters) {
+  const { city } = useRepository();
+
+  return useAppQuery({
+    queryKey: ["city", filters.name, filters.categoryId],
+    fetchData: () => city.findAll(filters),
+  });
 }
