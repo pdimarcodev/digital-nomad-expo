@@ -13,13 +13,15 @@ export class InMemoryAuthRepo implements IAuthRepo {
   }
 
   async signUp(params: AuthSignUpParams): Promise<void> {
-    const userAlreadyExist = authUsers.find((user) => user.email === params.email);
+    const userAlreadyExist = authUsers.find(
+      (user) => user.email === params.email,
+    );
 
     if (userAlreadyExist) {
-      throw new Error("user already exists")
+      throw new Error("user already exists");
     }
 
-    return
+    return;
   }
 
   async signOut(): Promise<void> {
@@ -27,7 +29,10 @@ export class InMemoryAuthRepo implements IAuthRepo {
   }
 
   async sendResetPasswordEmail(email: string): Promise<void> {
-    console.log('reset password sent', email)
-  } 
+    console.log("reset password sent", email);
+  }
+
+  async getUser(): Promise<AuthUser> {
+    return authUsers[0];
+  }
 }
- 
