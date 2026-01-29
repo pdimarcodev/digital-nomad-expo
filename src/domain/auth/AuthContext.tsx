@@ -28,8 +28,7 @@ export function AuthProvider({ children }: React.PropsWithChildren) {
 
   async function loadAuthUser() {
     try {
-      await new Promise((res) => setTimeout(() => res(""), 2000));
-
+      // await new Promise((res) => setTimeout(() => res(""), 2000));
       const user = await storage.getItem<AuthUser>(AUTH_KEY);
 
       if (user) {

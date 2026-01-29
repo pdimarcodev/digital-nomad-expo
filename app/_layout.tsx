@@ -6,11 +6,11 @@ import { SupabaseRepositories } from "@/src/infra/repositories/adapters/supabase
 import { RepositoryProvider } from "@/src/infra/repositories/RepositoryProvider";
 import { AsyncStorage } from "@/src/infra/storage/adapters/AsyncStorage";
 import { StorageProvider } from "@/src/infra/storage/StorageContext";
+import { AppStack } from "@/src/ui/navigation/AppStack";
 import theme from "@/src/ui/theme/theme";
 import { ThemeProvider } from "@shopify/restyle";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useFonts } from "expo-font";
-import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import "react-native-reanimated";
 
@@ -56,19 +56,7 @@ export default function RootLayout() {
             <RepositoryProvider value={SupabaseRepositories}>
               {/* <RepositoryProvider value={InMemoryRepository}> */}
               <ThemeProvider theme={theme}>
-                <Stack
-                  screenOptions={{
-                    contentStyle: { backgroundColor: theme.colors.background },
-                    headerShown: false,
-                    fullScreenGestureEnabled: true,
-                  }}
-                >
-                  <Stack.Screen
-                    name="(protected)"
-                    options={{ headerShown: false }}
-                  />
-                  <Stack.Screen name="sign-in" />
-                </Stack>
+                <AppStack />
                 <StatusBar style="light" />
                 <Toast />
               </ThemeProvider>
