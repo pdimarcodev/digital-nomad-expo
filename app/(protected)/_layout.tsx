@@ -15,6 +15,7 @@ export default function ProtectedLayout() {
       screenOptions={{ headerShown: false, fullScreenGestureEnabled: true }}
     >
       <Stack.Screen name="(tabs)" />
+      <Stack.Screen name="city-details/[id]" />
     </Stack>
   );
 }
