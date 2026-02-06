@@ -1,3 +1,4 @@
+import { useCityFindById } from "@/src/domain/city/operations/useCityFindById";
 import { Divider } from "@/src/ui/components/Divider";
 import { Screen } from "@/src/ui/components/Screen";
 import { Text } from "@/src/ui/components/Text";
@@ -7,7 +8,6 @@ import { CityDetailsInfo } from "@/src/ui/containers/CityDetailsInfo";
 import { CityDetailsMap } from "@/src/ui/containers/CityDetailsMap";
 import { CityDetailsRelatedCities } from "@/src/ui/containers/CityDetailsRelatedCities";
 import { CityDetailsTouristAttractions } from "@/src/ui/containers/CityDetailsTouristAttractions";
-import { useCityFindById } from "@/src/domain/city/operations/useCityFindById";
 import { useLocalSearchParams } from "expo-router";
 import { Pressable } from "react-native";
 import { useSharedValue } from "react-native-reanimated";
@@ -37,6 +37,7 @@ export default function CityDetails() {
           id={city.id}
           coverImage={city.coverImage}
           categories={city.categories}
+          isFavorite={city.isFavorite}
         />
         <CityDetailsInfo
           name={city.name}

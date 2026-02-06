@@ -1,10 +1,12 @@
-import { Link } from "expo-router";
 import { ImageBackground, ImageBackgroundProps, Pressable } from "react-native";
+
+import { Link } from "expo-router";
 import { useAppTheme } from "../theme/useAppTheme";
+
 import { CityPreview } from "@/src/domain/city/City";
 import { BlackOpacity } from "./BlackOpacity";
 import { Box } from "./Box";
-import { Icon } from "./Icon";
+import { CityFavoriteButton } from "./CityFavoriteButton";
 import { Text } from "./Text";
 
 type CityCardProps = {
@@ -27,11 +29,10 @@ export function CityCard({ cityPreview, style }: CityCardProps) {
           style={[{ width: "100%", height: 280 }, style]}
           imageStyle={{ borderRadius: borderRadii.default }}
         >
-          {/* Add opacity to image */}
           <BlackOpacity />
           <Box flex={1} padding="s24" justifyContent="space-between">
             <Box alignSelf="flex-end">
-              <Icon name="Favorite-outline" color="text" />
+              <CityFavoriteButton city={cityPreview} />
             </Box>
 
             <Box>

@@ -1,28 +1,41 @@
-import { CityFindAllFilters, ICityRepo } from "@/src/domain/city/ICityRepo";
-import { City, CityPreview } from "@/src/domain/city/City";
+import { City, CityPreview } from "../../../../domain/city/City";
+import {
+  CityToggleFavoriteParams,
+  ICityRepo,
+} from "../../../../domain/city/ICityRepo";
+
 import { supabase } from "./supabase";
 import { supabaseAdapter } from "./supabaseAdapter";
+import { supabaseHelpers } from "./supabaseHelpers";
 
-const storageURL = process.env.EXPO_PUBLIC_SUPABASE_STORAGE_URL;
+export type CityFilters = {
+  name?: string;
+  categoryId?: string | null;
+};
 
-async function findAll(filters: CityFindAllFilters): Promise<CityPreview[]> {
+const CITY_PREVIEW_FIELD =
+  "id,name,country,cover_image,favorite_cities!left(user_id)";
+
+async function findAll(filters: CityFilters): Promise<CityPreview[]> {
   try {
-    const fields = "id,name,country,cover_image";
+    const user = await supabaseHelpers.getUserFromSession();
 
     let cities;
     if (filters.categoryId) {
       const { data } = await supabase
         .from("cities_with_categories")
-        .select(fields)
+        .select(CITY_PREVIEW_FIELD)
         .eq("category_id", filters.categoryId)
-        .ilike("name", `%${filters.name}%`);
+        .ilike("name", `%${filters.name}%`)
+        .eq("favorite_cities.user_id", user.id);
 
       cities = data;
     } else {
       const { data } = await supabase
         .from("cities")
-        .select(fields)
-        .ilike("name", `%${filters.name}%`);
+        .select(CITY_PREVIEW_FIELD)
+        .ilike("name", `%${filters.name}%`)
+        .eq("favorite_cities.user_id", user.id);
 
       cities = data;
     }
@@ -31,25 +44,20 @@ async function findAll(filters: CityFindAllFilters): Promise<CityPreview[]> {
       throw new Error("data is not available");
     }
 
-    return cities?.map(
-      (row) =>
-        ({
-          id: row.id,
-          country: row.country,
-          name: row.name,
-          coverImage: `${storageURL}/${row.cover_image}`,
-        } as CityPreview)
-    );
+    return cities?.map((row) => supabaseAdapter.toCityPreview(row));
   } catch (error) {
     throw error;
   }
 }
 
 async function findById(id: string): Promise<City> {
+  const user = await supabaseHelpers.getUserFromSession();
+
   const { data, error } = await supabase
     .from("cities_with_full_info")
-    .select("*")
+    .select("*,favorite_cities(user_id)")
     .eq("id", id)
+    .eq("favorite_cities.user_id", user.id)
     .single();
 
   if (error) {
@@ -60,17 +68,60 @@ async function findById(id: string): Promise<City> {
 }
 
 async function getRelatedCities(cityId: string): Promise<CityPreview[]> {
+  const user = await supabaseHelpers.getUserFromSession();
+
   const { data } = await supabase
     .from("related_cities")
-    .select("*")
+    .select(CITY_PREVIEW_FIELD)
     .eq("source_city_id", cityId)
+    .eq("favorite_cities.user_id", user.id)
+
     .throwOnError();
 
-  return data.map(supabaseAdapter.toCityPreview);
+  return data.map((row) => supabaseAdapter.toCityPreview(row));
+}
+
+async function toggleFavorite(params: CityToggleFavoriteParams): Promise<void> {
+  const user = await supabaseHelpers.getUserFromSession();
+  if (params.isFavorite) {
+    await supabase
+      .from("favorite_cities")
+      .delete()
+      .eq("user_id", user.id)
+      .eq("city_id", params.cityId);
+  } else {
+    await supabase
+      .from("favorite_cities")
+      .insert({ city_id: params.cityId, user_id: user.id });
+  }
+}
+
+async function findAllFavorites(): Promise<CityPreview[]> {
+  const user = await supabaseHelpers.getUserFromSession();
+
+  const { data } = await supabase
+    .from("favorite_cities")
+    .select(
+      `
+    city_id,
+    cities (
+      id,
+      name,
+      country,
+      cover_image
+      )
+    `,
+    )
+    .eq("user_id", user.id)
+    .throwOnError();
+
+  return data.map((item) => supabaseAdapter.toCityPreview(item.cities, true));
 }
 
 export const SupabaseCityRepo: ICityRepo = {
   findAll,
   findById,
   getRelatedCities,
+  toggleFavorite,
+  findAllFavorites,
 };

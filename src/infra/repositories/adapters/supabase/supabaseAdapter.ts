@@ -4,19 +4,28 @@ import { City, CityPreview, TouristAttraction } from "@/src/domain/city/City";
 import { AuthUser as SupaBaseAuthUser } from "@supabase/supabase-js";
 import { Database } from "./types";
 
-const storageURL = process.env.EXPO_PUBLIC_SUPABASE_STORAGE_URL;
+export const storageURL = process.env.EXPO_PUBLIC_SUPABASE_STORAGE_URL;
+
+type CityWithFullInfo =
+  Database["public"]["Views"]["cities_with_full_info"]["Row"] & {
+    favorite_cities: {
+      user_id: string;
+    }[];
+  };
 
 type CategoryRow = Database["public"]["Tables"]["categories"]["Row"];
 type TouristAttractionRow =
   Database["public"]["Tables"]["tourist_attractions"]["Row"];
+
 type CityPreviewRow = {
   id: string | null;
   name: string | null;
   country: string | null;
   cover_image: string | null;
+  favorite_cities?: {
+    user_id: string;
+  }[];
 };
-type CityWithFullInfo =
-  Database["public"]["Views"]["cities_with_full_info"]["Row"];
 
 function toCity(data: CityWithFullInfo): City {
   const categories = data.categories as CategoryRow[];
@@ -24,27 +33,32 @@ function toCity(data: CityWithFullInfo): City {
     data.tourist_attractions as TouristAttractionRow[];
 
   return {
-    id: data.id!,
-    name: data.name!,
-    country: data.country!,
-    description: data.description!,
+    id: data.id as string,
+    name: data.name as string,
+    country: data.country as string,
+    description: data.description as string,
     coverImage: `${storageURL}/${data.cover_image}`,
     location: {
-      latitude: data.latitude!,
-      longitude: data.longitude!,
+      latitude: data.latitude as number,
+      longitude: data.longitude as number,
     },
     categories: categories.map(toCategory),
     touristAttractions: tourist_attractions.map(toTouristAttractions),
+    isFavorite: data.favorite_cities.length > 0,
   };
 }
 
-function toCityPreview(row: CityPreviewRow): CityPreview {
+function toCityPreview(row: CityPreviewRow, isFavorite?: boolean): CityPreview {
   return {
-    id: row.id,
-    country: row.country,
-    name: row.name,
+    id: row.id as string,
+    country: row.country as string,
+    name: row.name as string,
     coverImage: `${storageURL}/${row.cover_image}`,
-  } as CityPreview;
+    isFavorite:
+      isFavorite ??
+      (row.favorite_cities && row.favorite_cities?.length > 0) ??
+      false,
+  };
 }
 
 function toTouristAttractions(row: TouristAttractionRow): TouristAttraction {
@@ -52,7 +66,7 @@ function toTouristAttractions(row: TouristAttractionRow): TouristAttraction {
     id: row.id,
     description: row.description,
     name: row.name,
-    cityId: row.city_id!,
+    cityId: row.city_id as string,
   };
 }
 
