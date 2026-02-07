@@ -29,11 +29,12 @@ export function ProfileHeader({ authUser }: ProfileHeaderProps) {
         />
       </Box>
 
-      <Box flexDirection="row" columnGap="s16" mt="s16">
+      <Box flexDirection="row" columnGap="s16" mt="s16" alignItems="stretch">
         <Box flex={1}>
           <Button
             title="Edit profile"
             variant="secondary"
+            flex={1}
             onPress={() =>
               router.navigate({
                 pathname: "/update-profile",
@@ -49,6 +50,7 @@ export function ProfileHeader({ authUser }: ProfileHeaderProps) {
           <Button
             title="Change password"
             variant="secondary"
+            flex={1}
             onPress={() => router.navigate("/(protected)/update-password")}
           />
         </Box>

@@ -42,7 +42,9 @@ export function Button({
       justifyContent="center"
       alignItems="center"
     >
-      <Text color={buttonProps.textColor}>{title}</Text>
+      <Text color={buttonProps.textColor} textAlign="center">
+        {title}
+      </Text>
     </TouchableOpacityBox>
   );
 }
