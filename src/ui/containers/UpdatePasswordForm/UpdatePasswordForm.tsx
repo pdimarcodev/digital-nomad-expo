@@ -22,8 +22,8 @@ export function UpdatePasswordForm({ onSubmit }: UpdatePasswordFormProps) {
   return (
     <Box>
       <Text mb="s16">
-        Recomendamos usar uma combinação de letras, números e símbolos para
-        maior proteção.
+        We recommend using a combination of letters, numbers and symbols for
+        greater protection.
       </Text>
 
       <Controller
@@ -32,11 +32,11 @@ export function UpdatePasswordForm({ onSubmit }: UpdatePasswordFormProps) {
         render={({ field, fieldState }) => (
           <TextInput
             testID="current-password-input"
-            label="Senha Atual"
+            label="Current Password"
             secureTextEntry
             value={field.value}
             onChangeText={field.onChange}
-            placeholder="Senha atual"
+            placeholder="Current password"
             errorMessage={fieldState.error?.message}
           />
         )}
@@ -47,11 +47,11 @@ export function UpdatePasswordForm({ onSubmit }: UpdatePasswordFormProps) {
         render={({ field, fieldState }) => (
           <TextInput
             testID="new-password-input"
-            label="Nova senha"
+            label="New password"
             secureTextEntry
             value={field.value}
             onChangeText={field.onChange}
-            placeholder="sua senha"
+            placeholder="Your password"
             errorMessage={fieldState.error?.message}
           />
         )}
@@ -62,11 +62,11 @@ export function UpdatePasswordForm({ onSubmit }: UpdatePasswordFormProps) {
         render={({ field, fieldState }) => (
           <TextInput
             testID="confirm-new-password-input"
-            label="Confirmar nova senha"
+            label="Confirm new password"
             secureTextEntry
             value={field.value}
             onChangeText={field.onChange}
-            placeholder="sua senha"
+            placeholder="Your password"
             errorMessage={fieldState.error?.message}
           />
         )}
@@ -75,7 +75,7 @@ export function UpdatePasswordForm({ onSubmit }: UpdatePasswordFormProps) {
       <Button
         testID="submit-button"
         mt="s16"
-        title="Atualizar"
+        title="Update"
         onPress={handleSubmit(onSubmit)}
       />
     </Box>

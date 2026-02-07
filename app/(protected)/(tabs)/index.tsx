@@ -52,13 +52,13 @@ export default function HomeScreen() {
     let Content;
 
     if (isLoading) {
-      Content = <Text>carregando cidades...</Text>;
+      Content = <Text>Loading cities...</Text>;
     } else if (error) {
       Content = (
-        <Text>erro ao carregar cidades. {(error as Error).message}</Text>
+        <Text>Error loading cities. {(error as Error).message}</Text>
       );
     } else {
-      Content = <Text>não há cidades no momento</Text>;
+      Content = <Text>No cities at the moment</Text>;
     }
 
     return (

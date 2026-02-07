@@ -32,13 +32,13 @@ export default function ExploreScreen() {
     let Content;
 
     if (isLoading) {
-      Content = <Text>carregando categorias...</Text>;
+      Content = <Text>Loading categories...</Text>;
     } else if (error) {
       Content = (
-        <Text>erro ao carregar categorias. {(error as Error).message}</Text>
+        <Text>Error loading categories. {(error as Error).message}</Text>
       );
     } else {
-      Content = <Text>não há categorias no momento</Text>;
+      Content = <Text>No categories at the moment</Text>;
     }
 
     return (

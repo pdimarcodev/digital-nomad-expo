@@ -26,7 +26,7 @@ export default function CityDetails() {
   if (isLoading) {
     return (
       <Screen flex={1} justifyContent="center" alignItems="center">
-        <Text>Carregando dados...</Text>
+        <Text>Loading data...</Text>
       </Screen>
     );
   }
@@ -34,7 +34,7 @@ export default function CityDetails() {
   if (error || !city) {
     return (
       <Screen flex={1} justifyContent="center" alignItems="center">
-        <Text>Erro ao carregar cidade</Text>
+        <Text>Error loading city</Text>
       </Screen>
     );
   }

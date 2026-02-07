@@ -25,7 +25,7 @@ export default function ProfileScreen() {
               alignSelf="center"
             >
               <Icon name="Logout" color="fbErrorSurface" />
-              <Text color="fbErrorSurface">Sair</Text>
+              <Text color="fbErrorSurface">Sign out</Text>
             </Box>
           </Pressable>
         }

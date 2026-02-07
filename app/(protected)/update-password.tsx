@@ -12,7 +12,7 @@ export default function UpdatePasswordScreen() {
   return (
     <Screen scrollable>
       <SafeAreaView>
-        <Header title="Atualizar Senha" />
+        <Header title="Update Password" />
         <UpdatePasswordForm onSubmit={handleUpdatePassword} />
       </SafeAreaView>
     </Screen>

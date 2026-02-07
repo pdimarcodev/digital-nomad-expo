@@ -31,10 +31,10 @@ export function UpdateProfileForm({
         render={({ field, fieldState }) => (
           <TextInput
             testID="fullname-input"
-            label="Nome completo"
+            label="Full name"
             value={field.value}
             onChangeText={field.onChange}
-            placeholder="seu nome completo"
+            placeholder="Your full name"
             errorMessage={fieldState.error?.message}
           />
         )}
@@ -46,12 +46,12 @@ export function UpdateProfileForm({
         render={({ field, fieldState }) => (
           <TextInput
             testID="email-input"
-            label="E-mail"
+            label="Email"
             autoCapitalize="none"
             keyboardType="email-address"
             value={field.value}
             onChangeText={field.onChange}
-            placeholder="seu email"
+            placeholder="Your email"
             errorMessage={fieldState.error?.message}
           />
         )}
@@ -60,7 +60,7 @@ export function UpdateProfileForm({
       <Button
         testID="submit-button"
         mt="s16"
-        title="Atualizar"
+        title="Update"
         onPress={handleSubmit(onSubmit)}
       />
     </Box>

@@ -13,18 +13,18 @@ export function ProfileHeader({ authUser }: ProfileHeaderProps) {
   return (
     <Box>
       <Text variant="title16" alignSelf="center" mb="s40">
-        Perfil
+        Profile
       </Text>
 
       <Text variant="title16" mb="s16">
-        Informações da Conta.
+        Account Information
       </Text>
 
       <Box rowGap="s4">
-        <LineItem label="Nome" value={authUser.fullname} />
-        <LineItem label="E-mail" value={authUser.email} />
+        <LineItem label="Name" value={authUser.fullname} />
+        <LineItem label="Email" value={authUser.email} />
         <LineItem
-          label="Membro desde"
+          label="Member since"
           value={dateUtils.formatMonthAndYear(authUser.createdAt)}
         />
       </Box>
@@ -32,7 +32,7 @@ export function ProfileHeader({ authUser }: ProfileHeaderProps) {
       <Box flexDirection="row" columnGap="s16" mt="s16">
         <Box flex={1}>
           <Button
-            title="Editar perfil"
+            title="Edit profile"
             variant="secondary"
             onPress={() =>
               router.navigate({
@@ -47,7 +47,7 @@ export function ProfileHeader({ authUser }: ProfileHeaderProps) {
         </Box>
         <Box flex={1}>
           <Button
-            title="Alterar senha"
+            title="Change password"
             variant="secondary"
             onPress={() => router.navigate("/(protected)/update-password")}
           />

@@ -30,9 +30,9 @@ export default function UpdateProfileScreen() {
   return (
     <Screen scrollable>
       <SafeAreaView>
-        <Header title="Atualizar Perfil" />
+        <Header title="Update Profile" />
         <Text mb="s16">
-          Mantenha suas informações atualizadas para uma melhor experiência
+          Keep your information updated for a better experience
         </Text>
         <UpdateProfileForm
           onSubmit={handleUpdateProfile}

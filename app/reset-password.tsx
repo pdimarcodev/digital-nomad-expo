@@ -26,13 +26,13 @@ export default function ResetPasswordScreen() {
         <Header title="Reset password" />
         <Text mb="s16">Write your email to reset password</Text>
         <TextInput
-          label="E-mail"
+          label="Email"
           autoCapitalize="none"
           value={email}
           onChangeText={setEmail}
-          placeholder="seu email"
+          placeholder="Your email"
         />
-        <Button title="Enviar link" onPress={handleResetPassword} />
+        <Button title="Send link" onPress={handleResetPassword} />
 
         <TextLink
           goBackOnPress
