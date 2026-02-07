@@ -1,0 +1,137 @@
+-- TOURIST ATTRACTIONS - ENGLISH UPDATES
+-- Update statements to translate tourist attraction descriptions from Portuguese to English
+
+-- Rio de Janeiro
+UPDATE tourist_attractions SET description = 'One of the Seven Wonders of the Modern World, the Christ the Redeemer statue is an iconic landmark that offers spectacular views of the city.' WHERE name = 'Cristo Redentor' AND city_id = (SELECT id FROM cities WHERE name = 'Rio de Janeiro');
+
+UPDATE tourist_attractions SET description = 'One of the most famous mountains in Brazil, accessible by cable car, offering an impressive panoramic view of Rio de Janeiro.' WHERE name = 'Pão de Açúcar' AND city_id = (SELECT id FROM cities WHERE name = 'Rio de Janeiro');
+
+UPDATE tourist_attractions SET description = 'One of the most famous beaches in the world, known for its extensive sandy strip, lively nightlife, and cultural events.' WHERE name = 'Praia de Copacabana' AND city_id = (SELECT id FROM cities WHERE name = 'Rio de Janeiro');
+
+UPDATE tourist_attractions SET description = 'One of the largest and oldest botanical gardens in Brazil, full of tropical flora, trails, and conservation areas.' WHERE name = 'Jardim Botânico' AND city_id = (SELECT id FROM cities WHERE name = 'Rio de Janeiro');
+
+-- Tokyo
+UPDATE tourist_attractions SET description = 'The oldest temple in Tokyo and a place of great spiritual significance.' WHERE name = 'Templo Senso-ji' AND city_id = (SELECT id FROM cities WHERE name = 'Tóquio');
+
+UPDATE tourist_attractions SET description = 'One of the city''s icons, with incredible panoramic views.' WHERE name = 'Torre de Tóquio' AND city_id = (SELECT id FROM cities WHERE name = 'Tóquio');
+
+UPDATE tourist_attractions SET description = 'The famous bustling intersection, known worldwide.' WHERE name = 'Shibuya Crossing' AND city_id = (SELECT id FROM cities WHERE name = 'Tóquio');
+
+UPDATE tourist_attractions SET description = 'A vast park with museums, temples, and cherry blossoms in spring.' WHERE name = 'Parque Ueno' AND city_id = (SELECT id FROM cities WHERE name = 'Tóquio');
+
+-- Bangkok
+UPDATE tourist_attractions SET description = 'One of Bangkok''s most famous landmarks, the Grand Palace is a complex of majestic buildings that served as the residence of Thai kings.' WHERE name = 'Grande Palácio' AND city_id = (SELECT id FROM cities WHERE name = 'Bangkok');
+
+UPDATE tourist_attractions SET description = 'Located within the Grand Palace, this temple is considered the most sacred in Thailand and houses the famous Emerald Buddha statue.' WHERE name = 'Templo do Buda de Esmeralda (Wat Phra Kaew)' AND city_id = (SELECT id FROM cities WHERE name = 'Bangkok');
+
+UPDATE tourist_attractions SET description = 'One of the largest street markets in the world, with over 8,000 stalls selling a huge variety of products, from handicrafts to clothing and food.' WHERE name = 'Mercado de Chatuchak' AND city_id = (SELECT id FROM cities WHERE name = 'Bangkok');
+
+UPDATE tourist_attractions SET description = 'Located on the banks of the Chao Phraya River, Wat Arun is known for its imposing central tower and intricate architecture.' WHERE name = 'Wat Arun (Templo do Amanhecer)' AND city_id = (SELECT id FROM cities WHERE name = 'Bangkok');
+
+-- Barcelona
+UPDATE tourist_attractions SET description = 'One of the most impressive basilicas in the world, designed by Antoni Gaudí.' WHERE name = 'Sagrada Família' AND city_id = (SELECT id FROM cities WHERE name = 'Barcelona');
+
+UPDATE tourist_attractions SET description = 'A public park full of gardens and architectural elements designed by Gaudí.' WHERE name = 'Parque Güell' AND city_id = (SELECT id FROM cities WHERE name = 'Barcelona');
+
+UPDATE tourist_attractions SET description = 'Another architectural landmark by Gaudí, known for its distinctive facade.' WHERE name = 'Casa Batlló' AND city_id = (SELECT id FROM cities WHERE name = 'Barcelona');
+
+UPDATE tourist_attractions SET description = 'A famous boulevard in the center of Barcelona, full of shops, restaurants, and entertainment.' WHERE name = 'La Rambla' AND city_id = (SELECT id FROM cities WHERE name = 'Barcelona');
+
+-- New York
+UPDATE tourist_attractions SET description = 'A symbol of freedom and democracy, located at the entrance to New York harbor.' WHERE name = 'Estátua da Liberdade' AND city_id = (SELECT id FROM cities WHERE name = 'Nova York');
+
+UPDATE tourist_attractions SET description = 'A vast park in the heart of Manhattan, a perfect place for leisure and outdoor activities.' WHERE name = 'Central Park' AND city_id = (SELECT id FROM cities WHERE name = 'Nova York');
+
+UPDATE tourist_attractions SET description = 'The famous intersection lit by giant billboards and home to many Broadway theaters.' WHERE name = 'Times Square' AND city_id = (SELECT id FROM cities WHERE name = 'Nova York');
+
+UPDATE tourist_attractions SET description = 'One of the most famous skyscrapers in the world, offering stunning views of New York.' WHERE name = 'Empire State Building' AND city_id = (SELECT id FROM cities WHERE name = 'Nova York');
+
+-- Krabi
+UPDATE tourist_attractions SET description = 'One of the most beautiful beaches in Thailand, famous for its limestone cliffs and breathtaking landscapes.' WHERE name = 'Railay Beach' AND city_id = (SELECT id FROM cities WHERE name = 'Krabi');
+
+UPDATE tourist_attractions SET description = 'A breathtaking archipelago with paradise beaches and crystal-clear waters, perfect for diving.' WHERE name = 'Ilhas Phi Phi' AND city_id = (SELECT id FROM cities WHERE name = 'Krabi');
+
+UPDATE tourist_attractions SET description = 'A Buddhist temple located on a mountain, accessible by a long staircase, offering incredible panoramic views.' WHERE name = 'Templo da Caverna do Tigre' AND city_id = (SELECT id FROM cities WHERE name = 'Krabi');
+
+UPDATE tourist_attractions SET description = 'One of the most popular beaches in Krabi, known for its natural beauty and a great base for exploring nearby islands.' WHERE name = 'Praia de Ao Nang' AND city_id = (SELECT id FROM cities WHERE name = 'Krabi');
+
+-- Bali
+UPDATE tourist_attractions SET description = 'One of Bali''s most important temples, located atop a cliff overlooking the ocean, famous for its Kecak dance performances at sunset.' WHERE name = 'Templo de Uluwatu' AND city_id = (SELECT id FROM cities WHERE name = 'Bali');
+
+UPDATE tourist_attractions SET description = 'A natural and cultural sanctuary, inhabited by hundreds of monkeys, amid temples and dense tropical forests.' WHERE name = 'Floresta dos Macacos de Ubud' AND city_id = (SELECT id FROM cities WHERE name = 'Bali');
+
+UPDATE tourist_attractions SET description = 'One of Bali''s most iconic landscapes, with impressive rice terraces that provide spectacular views.' WHERE name = 'Terraços de Arroz de Tegallalang' AND city_id = (SELECT id FROM cities WHERE name = 'Bali');
+
+UPDATE tourist_attractions SET description = 'An active volcano that attracts hikers and adventurers to climb to the top and witness an incredible sunrise.' WHERE name = 'Monte Batur' AND city_id = (SELECT id FROM cities WHERE name = 'Bali');
+
+-- Amsterdam
+UPDATE tourist_attractions SET description = 'Home to the largest collection of Vincent Van Gogh''s works, this museum offers a journey through the painter''s life and work.' WHERE name = 'Museu Van Gogh' AND city_id = (SELECT id FROM cities WHERE name = 'Amsterdã');
+
+UPDATE tourist_attractions SET description = 'A museum in Anne Frank''s former hiding place during World War II, offering a moving view of her story.' WHERE name = 'Casa de Anne Frank' AND city_id = (SELECT id FROM cities WHERE name = 'Amsterdã');
+
+UPDATE tourist_attractions SET description = 'The national museum of the Netherlands, housing a vast collection of art, history, and culture, including masterpieces by Rembrandt.' WHERE name = 'Rijksmuseum' AND city_id = (SELECT id FROM cities WHERE name = 'Amsterdã');
+
+UPDATE tourist_attractions SET description = 'Amsterdam''s largest park, a perfect place to walk, cycle, relax, and enjoy the outdoors.' WHERE name = 'Vondelpark' AND city_id = (SELECT id FROM cities WHERE name = 'Amsterdã');
+
+-- Cancún
+UPDATE tourist_attractions SET description = 'One of the New Seven Wonders of the Modern World, this Mayan archaeological site is one of the most visited attractions near Cancún.' WHERE name = 'Chichén Itzá' AND city_id = (SELECT id FROM cities WHERE name = 'Cancún');
+
+UPDATE tourist_attractions SET description = 'A small island just 13 km from Cancún, famous for its tranquil beaches and excellent snorkeling.' WHERE name = 'Isla Mujeres' AND city_id = (SELECT id FROM cities WHERE name = 'Cancún');
+
+UPDATE tourist_attractions SET description = 'An eco-archaeological theme park that offers outdoor activities, cultural shows, and a chance to experience local wildlife.' WHERE name = 'Xcaret Park' AND city_id = (SELECT id FROM cities WHERE name = 'Cancún');
+
+UPDATE tourist_attractions SET description = 'One of Cancún''s most popular beaches, with stunning views of the Caribbean Sea and an ideal place to relax in the sun.' WHERE name = 'Praia de Delfines' AND city_id = (SELECT id FROM cities WHERE name = 'Cancún');
+
+-- Dubai
+UPDATE tourist_attractions SET description = 'The tallest building in the world, at 828 meters high, offering incredible panoramic views of Dubai from its observation deck.' WHERE name = 'Burj Khalifa' AND city_id = (SELECT id FROM cities WHERE name = 'Dubai');
+
+UPDATE tourist_attractions SET description = 'One of the largest shopping centers in the world, with over 1,200 stores, restaurants, an aquarium, and an indoor theme park.' WHERE name = 'Dubai Mall' AND city_id = (SELECT id FROM cities WHERE name = 'Dubai');
+
+UPDATE tourist_attractions SET description = 'An artificial palm-shaped island, famous for its luxury resorts, restaurants, and impressive city views.' WHERE name = 'Ilha Palm Jumeirah' AND city_id = (SELECT id FROM cities WHERE name = 'Dubai');
+
+UPDATE tourist_attractions SET description = 'Venture into the Dubai desert with safari tours, sand dunes, and Bedouin cultural experiences.' WHERE name = 'Deserto de Dubai' AND city_id = (SELECT id FROM cities WHERE name = 'Dubai');
+
+-- Mexico City
+UPDATE tourist_attractions SET description = 'The city''s largest square, surrounded by historic buildings, including the Metropolitan Cathedral and the National Palace.' WHERE name = 'Zócalo' AND city_id = (SELECT id FROM cities WHERE name = 'Cidade do México');
+
+UPDATE tourist_attractions SET description = 'One of Mexico''s most important museums, with a vast collection of archaeological and ethnographic artifacts celebrating Mexican culture.' WHERE name = 'Museu Nacional de Antropologia' AND city_id = (SELECT id FROM cities WHERE name = 'Cidade do México');
+
+UPDATE tourist_attractions SET description = 'Located atop Chapultepec forest, this castle offers a unique view of Mexican history and spectacular city views.' WHERE name = 'Castelo de Chapultepec' AND city_id = (SELECT id FROM cities WHERE name = 'Cidade do México');
+
+UPDATE tourist_attractions SET description = 'A historic and artistic neighborhood, home to the Blue House, the former residence and now museum of the famous painter Frida Kahlo.' WHERE name = 'Coyoacán' AND city_id = (SELECT id FROM cities WHERE name = 'Cidade do México');
+
+-- Hong Kong
+UPDATE tourist_attractions SET description = 'The highest point in Hong Kong, offering stunning panoramic views of the city skyline and Victoria Harbor.' WHERE name = 'Victoria Peak' AND city_id = (SELECT id FROM cities WHERE name = 'Hong Kong');
+
+UPDATE tourist_attractions SET description = 'A walk along Victoria Harbor, honoring Hong Kong cinema stars, with an incredible view of the bay.' WHERE name = 'Avenida das Estrelas' AND city_id = (SELECT id FROM cities WHERE name = 'Hong Kong');
+
+UPDATE tourist_attractions SET description = 'An impressive bronze statue of Buddha, located on Lantau Island, accessible by cable car.' WHERE name = 'Big Buddha (Tian Tan Buddha)' AND city_id = (SELECT id FROM cities WHERE name = 'Hong Kong');
+
+UPDATE tourist_attractions SET description = 'A famous night market where tourists and locals find street food, clothing, and traditional items.' WHERE name = 'Mercado Noturno de Temple Street' AND city_id = (SELECT id FROM cities WHERE name = 'Hong Kong');
+
+-- Košice
+UPDATE tourist_attractions SET description = 'The largest cathedral in Slovakia and one of the most beautiful examples of Gothic architecture in Central Europe.' WHERE name = 'Catedral de Santa Isabel' AND city_id = (SELECT id FROM cities WHERE name = 'Košice');
+
+UPDATE tourist_attractions SET description = 'The main street of Košice, full of historic buildings, restaurants, and cafes, being the heart of the city.' WHERE name = 'Rua Hlavná' AND city_id = (SELECT id FROM cities WHERE name = 'Košice');
+
+UPDATE tourist_attractions SET description = 'A stunning 19th-century theater, famous for its opera, ballet, and theater performances.' WHERE name = 'Teatro Estatal de Košice' AND city_id = (SELECT id FROM cities WHERE name = 'Košice');
+
+UPDATE tourist_attractions SET description = 'A museum that offers a comprehensive view of the history, art, and culture of the eastern region of Slovakia.' WHERE name = 'Museu da Eslováquia Oriental' AND city_id = (SELECT id FROM cities WHERE name = 'Košice');
+
+-- Melbourne
+UPDATE tourist_attractions SET description = 'One of the city''s main landmarks, Federation Square is a vibrant public space, surrounded by museums, galleries, and restaurants.' WHERE name = 'Federation Square' AND city_id = (SELECT id FROM cities WHERE name = 'Melbourne');
+
+UPDATE tourist_attractions SET description = 'One of the city''s most important green areas, offering relaxing trails and a variety of native flora.' WHERE name = 'Jardins Botânicos Reais de Melbourne' AND city_id = (SELECT id FROM cities WHERE name = 'Melbourne');
+
+UPDATE tourist_attractions SET description = 'One of the city''s largest entertainment complexes, offering casinos, restaurants, and an impressive view of the Yarra River.' WHERE name = 'Crown Casino' AND city_id = (SELECT id FROM cities WHERE name = 'Melbourne');
+
+UPDATE tourist_attractions SET description = 'One of Australia''s oldest and most famous markets, offering a wide variety of fresh produce, handicrafts, and cultural events.' WHERE name = 'Queen Victoria Market' AND city_id = (SELECT id FROM cities WHERE name = 'Melbourne');
+
+-- Singapore
+UPDATE tourist_attractions SET description = 'One of Singapore''s most iconic landmarks, known for its luxury hotel, casino, and the famous infinity pool at the top.' WHERE name = 'Marina Bay Sands' AND city_id = (SELECT id FROM cities WHERE name = 'Singapura');
+
+UPDATE tourist_attractions SET description = 'Futuristic gardens featuring the famous "Supertrees" and plant domes that create a visual and technological spectacle.' WHERE name = 'Gardens by the Bay' AND city_id = (SELECT id FROM cities WHERE name = 'Singapura');
+
+UPDATE tourist_attractions SET description = 'One of Singapore''s most recognized symbols, the park houses the famous Merlion statue, half fish and half lion.' WHERE name = 'Merlion Park' AND city_id = (SELECT id FROM cities WHERE name = 'Singapura');
+
+UPDATE tourist_attractions SET description = 'A vibrant neighborhood that offers an immersion in Chinese culture with temples, markets, and traditional restaurants.' WHERE name = 'Chinatown' AND city_id = (SELECT id FROM cities WHERE name = 'Singapura');

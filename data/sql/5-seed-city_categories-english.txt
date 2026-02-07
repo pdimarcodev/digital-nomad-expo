@@ -1,0 +1,23 @@
+-- CITY CATEGORIES - ENGLISH REFERENCE
+-- Note: This file references category names that need to be updated in the categories table first
+-- After updating categories from Portuguese to English, the relationships in this file remain the same
+-- The WHERE clause in the CTE uses category names that will be changed from Portuguese to English
+
+PORTUGUESE TO ENGLISH CATEGORY NAME MAPPING:
+- 'Destaques' → 'Highlights'
+- 'Urbano' → 'Urban'
+- 'Praia' → 'Beach'
+- 'Natureza' → 'Nature'
+- 'Cultura' → 'Culture'
+- 'Compras' → 'Shopping'
+- 'História' → 'History'
+- 'Aventura' → 'Adventure'
+- 'Luxo' → 'Luxury'
+- 'Gastronomia' → 'Gastronomy'
+
+Note: Once the categories table is updated with English names,
+the city_categories relationships will automatically reflect the English names
+when queried through joins with the categories table.
+
+No direct UPDATE statements needed for the city_categories table itself,
+as it only stores foreign key relationships (IDs).

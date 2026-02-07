@@ -1,0 +1,30 @@
+-- CITY RELATIONSHIPS - ENGLISH REFERENCE
+-- Note: This file contains only city-to-city relationships using IDs
+-- No Portuguese text to translate - only city names used in WHERE clause
+
+The city_cities table stores relationships between cities.
+City names in the WHERE clause are proper nouns that remain the same:
+- Rio de Janeiro
+- Tóquio (could be changed to "Tokyo" if desired for consistency)
+- Bangkok
+- Barcelona
+- Nova York (could be changed to "New York" if desired for consistency)
+- Krabi
+- Bali
+- Amsterdã (could be changed to "Amsterdam" if desired for consistency)
+- Cancún
+- Dubai
+- Cidade do México (could be changed to "Mexico City" if desired for consistency)
+- Hong Kong
+- Košice
+- Melbourne
+- Singapura (could be changed to "Singapore" if desired for consistency)
+
+OPTIONAL CITY NAME UPDATES (for consistency with English):
+UPDATE cities SET name = 'Tokyo' WHERE name = 'Tóquio';
+UPDATE cities SET name = 'New York' WHERE name = 'Nova York';
+UPDATE cities SET name = 'Amsterdam' WHERE name = 'Amsterdã';
+UPDATE cities SET name = 'Mexico City' WHERE name = 'Cidade do México';
+UPDATE cities SET name = 'Singapore' WHERE name = 'Singapura';
+
+Note: Changing city names will require updating references in other tables/code.

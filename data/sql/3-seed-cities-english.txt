@@ -1,0 +1,56 @@
+-- CITIES - ENGLISH UPDATES
+-- Update statements to translate city names, country names, and descriptions from Portuguese to English
+
+-- STEP 1: Update Country Names (execute these first)
+UPDATE cities SET country = 'Brazil' WHERE country = 'Brasil';
+UPDATE cities SET country = 'Japan' WHERE country = 'Japão';
+UPDATE cities SET country = 'Thailand' WHERE country = 'Tailândia';
+UPDATE cities SET country = 'Spain' WHERE country = 'Espanha';
+UPDATE cities SET country = 'United States' WHERE country = 'Estados Unidos';
+UPDATE cities SET country = 'Indonesia' WHERE country = 'Indonésia';
+UPDATE cities SET country = 'Netherlands' WHERE country = 'Países Baixos';
+UPDATE cities SET country = 'Mexico' WHERE country = 'México';
+UPDATE cities SET country = 'United Arab Emirates' WHERE country = 'Emirados Árabes Unidos';
+UPDATE cities SET country = 'Slovakia' WHERE country = 'Eslováquia';
+UPDATE cities SET country = 'Australia' WHERE country = 'Austrália';
+UPDATE cities SET country = 'Singapore' WHERE country = 'Singapura' AND name = 'Singapura';
+
+-- STEP 2: Update City Names (optional - execute these if you want English city names)
+UPDATE cities SET name = 'Tokyo' WHERE name = 'Tóquio';
+UPDATE cities SET name = 'New York' WHERE name = 'Nova York';
+UPDATE cities SET name = 'Amsterdam' WHERE name = 'Amsterdã';
+UPDATE cities SET name = 'Mexico City' WHERE name = 'Cidade do México';
+UPDATE cities SET name = 'Singapore' WHERE name = 'Singapura';
+
+-- STEP 3: Update City Descriptions (execute after updating names if you changed them)
+-- Note: If you updated city names in STEP 2, use the new English names in the WHERE clauses below
+
+UPDATE cities SET description = 'Rio de Janeiro, the Marvelous City, is world-renowned for its iconic beaches, lush mountains, and Carnival. The city offers a unique combination of vibrant culture, natural beauty, and a lively lifestyle.' WHERE name = 'Rio de Janeiro';
+
+UPDATE cities SET description = 'Tokyo, the capital of Japan, combines tradition and modernity, with ancient temples and futuristic architecture. It is a global center of culture, technology, and economy, as well as being famous for its gastronomy.' WHERE name = 'Tokyo'; -- Use 'Tóquio' if you didn't update city names
+
+UPDATE cities SET description = 'Bangkok, the vibrant capital of Thailand, is a city that blends tradition and modernity. Famous for its historic temples, bustling street markets, and towering skyscrapers.' WHERE name = 'Bangkok';
+
+UPDATE cities SET description = 'Barcelona, the vibrant capital of Catalonia, is known for its modernist architecture, beautiful beaches, and rich culture.' WHERE name = 'Barcelona';
+
+UPDATE cities SET description = 'New York, the city that never sleeps, is a global center of culture, business, and entertainment.' WHERE name = 'New York'; -- Use 'Nova York' if you didn't update city names
+
+UPDATE cities SET description = 'Krabi, located on the west coast of Thailand, is famous for its stunning landscapes, white sand beaches, and crystal-clear waters.' WHERE name = 'Krabi';
+
+UPDATE cities SET description = 'Bali, also known as the Island of the Gods, is one of the most sought-after tourist destinations in the world.' WHERE name = 'Bali';
+
+UPDATE cities SET description = 'Amsterdam, the vibrant capital of the Netherlands, is known for its picturesque canals, renowned museums, and rich cultural history.' WHERE name = 'Amsterdam'; -- Use 'Amsterdã' if you didn't update city names
+
+UPDATE cities SET description = 'Cancún, located on the Caribbean coast of Mexico, is famous for its white sand beaches, crystal-clear waters, and vibrant nightlife.' WHERE name = 'Cancún';
+
+UPDATE cities SET description = 'Dubai, a global city known for its luxury, innovation, and impressive architecture.' WHERE name = 'Dubai';
+
+UPDATE cities SET description = 'Mexico City is a vibrant metropolis that combines history, culture, and modernity.' WHERE name = 'Mexico City'; -- Use 'Cidade do México' if you didn't update city names
+
+UPDATE cities SET description = 'Hong Kong, one of the most vibrant and densely populated cities in the world, known for its iconic skyline.' WHERE name = 'Hong Kong';
+
+UPDATE cities SET description = 'Košice, the second-largest city in Slovakia, is a historical and cultural center with rich Gothic architecture.' WHERE name = 'Košice';
+
+UPDATE cities SET description = 'Melbourne, the cultural capital of Australia, is known for its vibrant art scene, nightlife, and cafes.' WHERE name = 'Melbourne';
+
+UPDATE cities SET description = 'Singapore, a modern and cosmopolitan city-state, is known for its impressive urban skyline and futuristic gardens.' WHERE name = 'Singapore'; -- Use 'Singapura' if you didn't update city names

@@ -1,0 +1,13 @@
+-- CATEGORIES - ENGLISH UPDATES
+-- Update statements to translate categories from Portuguese to English
+
+UPDATE categories SET name = 'Highlights', description = 'Travelers'' favorites' WHERE code = 'FAVORITE';
+UPDATE categories SET name = 'Urban', description = 'Explore city life' WHERE code = 'URBAN';
+UPDATE categories SET name = 'Beach', description = 'Sun and fresh water' WHERE code = 'BEACH';
+UPDATE categories SET name = 'Nature', description = 'The best destinations to relax' WHERE code = 'NATURE';
+UPDATE categories SET name = 'Culture', description = 'Cultural richness and traditions' WHERE code = 'CULTURE';
+UPDATE categories SET name = 'Shopping', description = 'Destinations for those who love shopping' WHERE code = 'SHOPPING';
+UPDATE categories SET name = 'History', description = 'Cities rich in history and heritage' WHERE code = 'HISTORY';
+UPDATE categories SET name = 'Adventure', description = 'The best places for adventure' WHERE code = 'ADVENTURE';
+UPDATE categories SET name = 'Luxury', description = 'Luxury travel experiences' WHERE code = 'LUXURY';
+UPDATE categories SET name = 'Gastronomy', description = 'Explore local cuisine' WHERE code = 'GASTRONOMY';
