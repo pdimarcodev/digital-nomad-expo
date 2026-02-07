@@ -1,5 +1,6 @@
 import { City, CityPreview } from "../../../../domain/city/City";
 import {
+  CitiesGroupedByCategory,
   CityToggleFavoriteParams,
   ICityRepo,
 } from "../../../../domain/city/ICityRepo";
@@ -118,10 +119,50 @@ async function findAllFavorites(): Promise<CityPreview[]> {
   return data.map((item) => supabaseAdapter.toCityPreview(item.cities, true));
 }
 
+async function findGroupedByCategory(): Promise<CitiesGroupedByCategory[]> {
+  try {
+    const user = await supabaseHelpers.getUserFromSession();
+
+    const { data } = await supabase
+      .from("categories")
+      .select(
+        `
+        id,
+        name,
+        description,
+        code,
+        cities (
+          id,
+          name,
+          country,
+          cover_image,
+          favorite_cities!left(user_id)
+        )
+      `,
+      )
+      .eq("cities.favorite_cities.user_id", user.id)
+      .throwOnError();
+
+    if (!data) {
+      throw new Error("data is not available");
+    }
+
+    return data.map((row) => ({
+      category: supabaseAdapter.toCategory(row),
+      cities: (row.cities || []).map((city) =>
+        supabaseAdapter.toCityPreview(city),
+      ),
+    }));
+  } catch (error) {
+    throw error;
+  }
+}
+
 export const SupabaseCityRepo: ICityRepo = {
   findAll,
   findById,
   getRelatedCities,
   toggleFavorite,
   findAllFavorites,
+  findGroupedByCategory,
 };
