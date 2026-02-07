@@ -4,7 +4,7 @@ import { ToastFeedback } from "@/src/infra/feedbackService/adapters/Toast/ToastF
 import { FeedbackProvider } from "@/src/infra/feedbackService/FeedbackProvider";
 import { SupabaseRepositories } from "@/src/infra/repositories/adapters/supabase";
 import { RepositoryProvider } from "@/src/infra/repositories/RepositoryProvider";
-import { AsyncStorage } from "@/src/infra/storage/adapters/AsyncStorage";
+import { MMKVStorage } from "@/src/infra/storage/adapters/MMKVStorage";
 import { StorageProvider } from "@/src/infra/storage/StorageContext";
 import { AppStack } from "@/src/ui/navigation/AppStack";
 import theme from "@/src/ui/theme/theme";
@@ -50,7 +50,7 @@ export default function RootLayout() {
 
   return (
     <QueryClientProvider client={client}>
-      <StorageProvider storage={AsyncStorage}>
+      <StorageProvider storage={MMKVStorage}>
         <AuthProvider>
           <FeedbackProvider value={ToastFeedback}>
             <RepositoryProvider value={SupabaseRepositories}>

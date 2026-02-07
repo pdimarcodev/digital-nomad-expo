@@ -1,6 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
-import 'expo-sqlite/localStorage/install';
 import { z } from 'zod';
+import { SupabaseMMKVStorage } from '../../../storage/adapters/SupabaseMMKVStorage';
 import { Database } from "./types";
 
 const supabaseEnvSchema = z.object({
@@ -15,7 +15,7 @@ const { url, key } = supabaseEnvSchema.parse({
 
 export const supabase = createClient<Database>(url, key, {
   auth: {
-    storage: localStorage,
+    storage: SupabaseMMKVStorage,
     autoRefreshToken: true,
     persistSession: true,
     detectSessionInUrl: false,
