@@ -1,27 +1,17 @@
-import { router } from "expo-router";
 import { ImageBackground, ScrollView } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { City } from "@/src/domain/city/City";
 import { BlackOpacity } from "../components/BlackOpacity";
 import { Box } from "../components/Box";
 import { CategoryPill } from "../components/CategoryPill";
-import { CityFavoriteButton } from "../components/CityFavoriteButton";
-import { IconButton } from "../components/IconButton";
 import { PILL_HEIGHT } from "../components/Pill";
 
-type CityDetailsHeaderProps = Pick<
-  City,
-  "id" | "coverImage" | "categories" | "isFavorite"
->;
+type CityDetailsHeaderProps = Pick<City, "coverImage" | "categories">;
 
 export function CityDetailsHeader({
-  id,
   coverImage,
   categories,
-  isFavorite,
 }: CityDetailsHeaderProps) {
-  const { top } = useSafeAreaInsets();
   return (
     <Box>
       <ImageBackground
@@ -32,16 +22,6 @@ export function CityDetailsHeader({
         imageStyle={{ borderBottomRightRadius: 40 }}
       >
         <BlackOpacity />
-        <Box
-          flexDirection="row"
-          justifyContent="space-between"
-          alignItems="center"
-          padding="padding"
-          style={{ paddingTop: top }}
-        >
-          <IconButton iconName="Chevron-left" onPress={router.back} />
-          <CityFavoriteButton size={30} city={{ id, isFavorite }} />
-        </Box>
       </ImageBackground>
 
       <ScrollView

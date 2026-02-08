@@ -1,5 +1,7 @@
 import { useCityFindById } from "@/src/domain/city/operations/useCityFindById";
+import { CityFavoriteButton } from "@/src/ui/components/CityFavoriteButton";
 import { Divider } from "@/src/ui/components/Divider";
+import { IconButton } from "@/src/ui/components/IconButton";
 import { Screen } from "@/src/ui/components/Screen";
 import { Text } from "@/src/ui/components/Text";
 import { BottomSheetMap } from "@/src/ui/containers/BottomSheetMap";
@@ -8,15 +10,17 @@ import { CityDetailsInfo } from "@/src/ui/containers/CityDetailsInfo";
 import { CityDetailsMap } from "@/src/ui/containers/CityDetailsMap";
 import { CityDetailsRelatedCities } from "@/src/ui/containers/CityDetailsRelatedCities";
 import { CityDetailsTouristAttractions } from "@/src/ui/containers/CityDetailsTouristAttractions";
-import { useLocalSearchParams } from "expo-router";
-import { Pressable } from "react-native";
+import { router, useLocalSearchParams } from "expo-router";
+import { Pressable, View } from "react-native";
 import Animated, { FadeIn, useSharedValue } from "react-native-reanimated";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const PAGE_ANIMATION_TIME = 1000;
 
 export default function CityDetails() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const { data: city, error, isLoading } = useCityFindById(id);
+  const { top } = useSafeAreaInsets();
 
   const bottomSheetIsOpen = useSharedValue(false);
   function toggleBottomSheet() {
@@ -44,10 +48,8 @@ export default function CityDetails() {
       <Screen style={{ paddingHorizontal: 0 }} scrollable>
         <Animated.View entering={FadeIn.duration(PAGE_ANIMATION_TIME)}>
           <CityDetailsHeader
-            id={city.id}
             coverImage={city.coverImage}
             categories={city.categories}
-            isFavorite={city.isFavorite}
           />
           <CityDetailsInfo
             name={city.name}
@@ -68,6 +70,22 @@ export default function CityDetails() {
           <CityDetailsRelatedCities id={city.id} />
         </Animated.View>
       </Screen>
+      <View
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+          paddingHorizontal: 16,
+          paddingTop: top,
+        }}
+      >
+        <IconButton iconName="Chevron-left" onPress={router.back} />
+        <CityFavoriteButton size={30} city={{ id: city.id, isFavorite: city.isFavorite }} />
+      </View>
       <Animated.View entering={FadeIn.duration(0).delay(PAGE_ANIMATION_TIME)}>
         <BottomSheetMap
           location={city.location}
