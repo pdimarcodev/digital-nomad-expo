@@ -1,50 +1,65 @@
-# Welcome to your Expo app 👋
+# Digital Nomad App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A mobile app for browsing and discovering cities for digital nomads. Built with Expo (React Native) + TypeScript.
 
-## Get started
+## Tech Stack
 
-1. Install dependencies
+- **Framework**: Expo ~54, Expo Router (file-based routing)
+- **Language**: TypeScript
+- **Styling**: Shopify Restyle (theme-based design system), IcoMoon icons
+- **Animations**: React Native Reanimated
+- **Maps**: React Native Maps
+- **Forms**: React Hook Form + Zod validation
+- **Data fetching**: TanStack React Query
+- **Storage**: React Native MMKV (encrypted, fast key-value store)
+- **Backend**: Supabase (Postgres DB with custom tables/views, Auth)
+- **Testing**: React Testing Library (react-native)
+- **Web**: Next.js landing page for password reset flow
 
-   ```bash
-   npm install
-   ```
+## Architecture
 
-2. Start the app
+Hexagonal architecture with vertical slices:
 
-   ```bash
-   npx expo start
-   ```
+- **Domain layer**: entities, port interfaces (`ICityRepo`, `IAuthRepo`, etc.), and use-case hooks
+- **Infrastructure layer**: adapters implementing ports — Supabase and In-Memory variants for repos, storage, and feedback services
+- **UI layer**: components and screen containers, decoupled from infrastructure via React Context providers
 
-In the output, you'll find options to open the app in a
+Adapters are injected at the composition root (`app/_layout.tsx`), making it easy to swap Supabase for in-memory implementations during testing.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## UI Highlights
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+- Liquid glass bottom tab bar (iOS)
 
-## Get a fresh project
+## Running the Project
 
-When you're ready, run:
+Install dependencies:
 
 ```bash
-npm run reset-project
+npm install
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### iOS
 
-## Learn more
+Requires a simulator or device running iOS 18+ (liquid glass tab bar is not supported in Expo Go).
 
-To learn more about developing your project with Expo, look at the following resources:
+```bash
+npm run ios
+```
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+### Android
 
-## Join the community
+```bash
+npm run android
+```
 
-Join our community of developers creating universal apps.
+### Start dev server
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+```bash
+npm start
+```
+
+## Testing
+
+```bash
+npm test
+```
