@@ -70,12 +70,21 @@ export default function HomeScreen() {
 
   return (
     <Screen style={{ paddingHorizontal: 0 }}>
+      <Box style={{ paddingTop: top }}>
+        <CityFilter
+          categories={categories}
+          cityName={cityName}
+          onChangeCityName={setCityName}
+          selectedCategoryId={selectedCategoryId}
+          onChangeSelectedCategoryId={setSelectedCategoryId}
+        />
+      </Box>
       <Animated.FlatList
         itemLayoutAnimation={FadingTransition.duration(500)}
         ref={flatListRef}
         contentContainerStyle={{
           gap: spacing.padding,
-          paddingTop: top,
+          paddingTop: spacing.padding,
           paddingBottom: spacing.padding,
         }}
         data={cities}
@@ -83,15 +92,6 @@ export default function HomeScreen() {
         showsVerticalScrollIndicator={false}
         keyExtractor={(item) => item.id}
         ListEmptyComponent={renderEmptyComponent()}
-        ListHeaderComponent={
-          <CityFilter
-            categories={categories}
-            cityName={cityName}
-            onChangeCityName={setCityName}
-            selectedCategoryId={selectedCategoryId}
-            onChangeSelectedCategoryId={setSelectedCategoryId}
-          />
-        }
       />
     </Screen>
   );

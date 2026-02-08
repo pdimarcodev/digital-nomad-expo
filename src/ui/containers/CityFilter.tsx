@@ -1,8 +1,8 @@
+import { Category } from "@/src/domain/category/Category";
 import { ScrollView } from "react-native";
 import { Box } from "../components/Box";
 import { CategoryPill } from "../components/CategoryPill";
 import { SearchInput } from "../components/SearchInput";
-import { Category } from "@/src/domain/category/Category";
 
 type CityFilterProps = {
   categories?: Category[];
@@ -19,7 +19,17 @@ export function CityFilter({
   onChangeSelectedCategoryId,
 }: CityFilterProps) {
   return (
-    <Box>
+    <Box
+      backgroundColor="background"
+      style={{
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 0.6,
+        shadowRadius: 10,
+        elevation: 8,
+        zIndex: 1,
+      }}
+    >
       <Box paddingHorizontal="padding">
         <SearchInput
           value={cityName}
@@ -28,7 +38,13 @@ export function CityFilter({
         />
       </Box>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-        <Box mt="s16" flexDirection="row" gap="s8" paddingHorizontal="padding">
+        <Box
+          mt="s16"
+          mb="s8"
+          flexDirection="row"
+          gap="s8"
+          paddingHorizontal="padding"
+        >
           {categories?.map((category) => (
             <CategoryPill
               key={category.id}
@@ -36,7 +52,7 @@ export function CityFilter({
               category={category}
               onPress={() =>
                 onChangeSelectedCategoryId(
-                  category.id === selectedCategoryId ? null : category.id
+                  category.id === selectedCategoryId ? null : category.id,
                 )
               }
             />
