@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { Image, Pressable, useWindowDimensions } from "react-native";
 
 import { Link } from "expo-router";
@@ -12,7 +13,9 @@ type FavoriteCityCardProps = {
   cityPreview: CityPreview;
 };
 
-export function FavoriteCityCard({ cityPreview }: FavoriteCityCardProps) {
+export const FavoriteCityCard = memo(function FavoriteCityCard({
+  cityPreview,
+}: FavoriteCityCardProps) {
   const { borderRadii } = useAppTheme();
 
   const { width } = useWindowDimensions();
@@ -60,4 +63,4 @@ export function FavoriteCityCard({ cityPreview }: FavoriteCityCardProps) {
       </Pressable>
     </Link>
   );
-}
+});
