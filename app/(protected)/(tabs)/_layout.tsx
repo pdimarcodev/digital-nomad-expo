@@ -1,61 +1,24 @@
-import { Icon } from '@/src/ui/components/Icon';
 import { useAppTheme } from '@/src/ui/theme/useAppTheme';
-import { Tabs } from 'expo-router';
+import { Icon, Label, NativeTabs } from 'expo-router/unstable-native-tabs';
 import React from 'react';
 
-
 export default function TabLayout() {
-  const { colors } = useAppTheme()
+  const { colors } = useAppTheme();
 
   return (
-    <Tabs
-      screenOptions={{
-        headerShown: false,
-        tabBarActiveTintColor: colors.primary,
-        tabBarInactiveTintColor: colors.gray2,
-        tabBarStyle: {
-          backgroundColor: colors.background,
-          paddingTop: 10,
-          height: 90,
-          borderTopWidth: 0
-        },
-        tabBarLabelStyle: {
-          fontFamily: "PoppinsRegular",
-          fontSize: 12,
-          color: colors.text
-        }
-      }}
-    >
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ focused }) =>
-            <Icon
-              name={focused ? 'Home-fill' : 'Home-outline'} color={focused ? 'primary' : 'gray2'}
-            />,
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ focused }) =>
-            <Icon
-              name="Explore" color={focused ? 'primary' : 'gray2'}
-            />,
-        }}
-      />
-      <Tabs.Screen
-        name="profile"
-        options={{
-          title: 'Profile',
-          tabBarIcon: ({ focused }) =>
-            <Icon
-              name={focused ? 'Person-fill' : 'Person-outline'} color={focused ? 'primary' : 'gray2'}
-            />,
-        }}
-      />
-    </Tabs>
+    <NativeTabs tintColor={colors.primary}>
+      <NativeTabs.Trigger name="index">
+        <Icon sf={{ default: 'house', selected: 'house.fill' }} />
+        <Label>Home</Label>
+      </NativeTabs.Trigger>
+      <NativeTabs.Trigger name="explore">
+        <Icon sf="safari" />
+        <Label>Explore</Label>
+      </NativeTabs.Trigger>
+      <NativeTabs.Trigger name="profile">
+        <Icon sf={{ default: 'person', selected: 'person.fill' }} />
+        <Label>Profile</Label>
+      </NativeTabs.Trigger>
+    </NativeTabs>
   );
 }
