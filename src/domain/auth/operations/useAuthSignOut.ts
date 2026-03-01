@@ -9,11 +9,14 @@ export function useAuthSignOut() {
 
   const queryClient = useQueryClient();
 
+  function clearLocalSession() {
+    queryClient.clear();
+    removeAuthUser();
+  }
+
   return useAppMutation({
-    mutateFn: () => auth.signOut(),
-    onSuccess: () => {
-      queryClient.clear();
-      removeAuthUser();
-    },
+    mutationFn: () => auth.signOut(),
+    onSuccess: clearLocalSession,
+    onError: clearLocalSession,
   });
 }

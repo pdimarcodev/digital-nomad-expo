@@ -1,3 +1,4 @@
+import { supabase } from "@/src/infra/repositories/adapters/supabase/supabase";
 import { useStorage } from "@/src/infra/storage/StorageContext";
 import { router, SplashScreen } from "expo-router";
 import React, { useContext, useEffect, useState } from "react";
@@ -54,6 +55,15 @@ export function AuthProvider({ children }: React.PropsWithChildren) {
 
   useEffect(() => {
     loadAuthUser();
+  }, []);
+
+  useEffect(() => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
+      if (event === "SIGNED_OUT") {
+        removeAuthUser();
+      }
+    });
+    return () => subscription.unsubscribe();
   }, []);
 
   useEffect(() => {
